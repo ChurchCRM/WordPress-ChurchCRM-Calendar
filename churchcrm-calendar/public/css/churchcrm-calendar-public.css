@@ -2,3 +2,13 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
+
+.event-div-header h1 {
+    font-size:1.8em!important;
+    color: #373f42;
+ }
+
+.event-div-header h2 {
+    font-size:1.25em !important;
+    color:#96a9b5;
+ }

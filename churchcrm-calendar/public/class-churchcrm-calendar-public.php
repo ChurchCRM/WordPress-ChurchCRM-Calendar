@@ -40,6 +40,16 @@ class ChurchCRM_Calendar_Public {
 	 */
 	private $version;
 
+	
+	/**
+	 * The default attributes for the shortcode
+	 *
+	 * @since  1.0.0
+	 * @access  private
+	 * @var
+	 */
+	 private $churchcrm_calendar_list_shortcode_atts_defaults;
+
 	/**
 	 * Initialize the class and set its properties.
 	 *
@@ -51,6 +61,11 @@ class ChurchCRM_Calendar_Public {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+
+		$this->churchcrm_calendar_list_shortcode_atts = array();
+		$this->churchcrm_calendar_list_shortcode_atts_defaults = array(
+		);
+		$this->churchcrm_calendar_register_shortcodes();
 
 	}
 
@@ -97,6 +112,32 @@ class ChurchCRM_Calendar_Public {
 		 */
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/churchcrm-calendar-public.js', array( 'jquery' ), $this->version, false );
+
+	}
+
+	/**
+	 * Register plugin shortcode(s)
+	 *
+	 * @since 1.17
+	 */
+	public function churchcrm_calendar_register_shortcodes() {
+
+		add_shortcode( 'churchcrm-calendar-list', array( $this, 'churchcrm_calendar_list_shortcode_callback' ) );
+
+	}
+
+	/**
+	 * Callback for [simple-staff-list]
+	 *
+	 * @since 1.17
+	 */
+	public function churchcrm_calendar_list_shortcode_callback( $atts = array() ) {
+		
+		global $crmc_sc_output;
+		
+		$this->churchcrm_calendar_list_shortcode_atts = shortcode_atts( $this->churchcrm_calendar_list_shortcode_atts_defaults, $atts, 'churchcrm-calendar-list' );
+		include( 'partials/churchcrm-calendar-list-shortcode-display.php' );
+		return $crmc_sc_output;
 
 	}
 
