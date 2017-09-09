@@ -108,14 +108,11 @@ class ChurchCRM_Calendar_Admin {
 	public function register_menu() { 
 
 		// Order page
-		add_submenu_page(
-			'edit.php?post_type=churchcrm-calendar',
-			__( 'ChurchCRM Calendar Options', $this->plugin_name ),
-			__( 'Options', $this->plugin_name ),
-			'edit_pages',
-			'churchcrm-calendar-options',
-			array( $this, 'display_options_page' )
-		);
+		add_options_page('ChurchCRM Calendar Plugin Page','ChurchCRM Calendar', 'manage_options','churchcrm-calendar',array($this,'my_plugin_options'));
+	}
+
+	function my_plugin_options() {
+		include_once( 'partials/churchcrm-calendar-admin-display.php' );
 	}
 
 }

@@ -64,6 +64,7 @@ class ChurchCRM_Calendar_Public {
 
 		$this->churchcrm_calendar_list_shortcode_atts = array();
 		$this->churchcrm_calendar_list_shortcode_atts_defaults = array(
+			"max"=>stripslashes_deep( get_option('_events_count_max') )
 		);
 		$this->churchcrm_calendar_register_shortcodes();
 
@@ -136,6 +137,7 @@ class ChurchCRM_Calendar_Public {
 		global $crmc_sc_output;
 		
 		$this->churchcrm_calendar_list_shortcode_atts = shortcode_atts( $this->churchcrm_calendar_list_shortcode_atts_defaults, $atts, 'churchcrm-calendar-list' );
+		//print_r($atts);
 		include( 'partials/churchcrm-calendar-list-shortcode-display.php' );
 		return $crmc_sc_output;
 
