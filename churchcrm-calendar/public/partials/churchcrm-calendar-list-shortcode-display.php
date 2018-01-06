@@ -21,10 +21,8 @@
     $events = json_decode(file_get_contents($request_string));
     date_default_timezone_set(get_option('timezone_string'));
     
-    /*
-        TODO: Render the events on the page.
-    */ 
-    $crmc_sc_output = "<div class=\"events-list\">";
+    $ICSCalendar = get_option('_curchcrm_server_url')."/api/public/calendar/ics?r=".mt_rand();
+    $crmc_sc_output = "<a target='_blank' href='$ICSCalendar'>Add to Calendar</a><div class=\"events-list\">";
 
         foreach ($events as $Event) 
         {
@@ -36,6 +34,3 @@
         }
         
     $crmc_sc_output .= "</div>";
-
-    
-    
