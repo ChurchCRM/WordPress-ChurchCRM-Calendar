@@ -17,7 +17,7 @@
     $atts = $this->churchcrm_calendar_list_shortcode_atts;
     
     $events_count_max = $this->churchcrm_calendar_list_shortcode_atts['max'];
-    $request_string = get_option('_curchcrm_server_url')."/external/calendar/events?start=".date('Y-m-d')."&max=".$events_count_max."&r=".mt_rand();
+    $request_string = get_option('_curchcrm_server_url')."/api/public/calendar/events?start=".date('Y-m-d')."&max=".$events_count_max."&r=".mt_rand();
     $events = json_decode(file_get_contents($request_string));
     date_default_timezone_set(get_option('timezone_string'));
     
